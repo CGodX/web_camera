@@ -5,86 +5,26 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        .video {
-            background: #000;
-            position: relative;
-        }
-
-        .video,
-        video {
-            width: 100%;
-            height: 100%;
-        }
-
-        .l {
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            margin: auto;
-            border: 2px solid red;
-        }
-
-        video {
-            background: #000;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     <div class="video">
-        <video id="video" width="640" height="480" autoplay></video>
-        <div class="l"></div>
-        <!-- <button id="snap">Snap Photo</button> -->
+        <video id="video" autoplay></video>
+        <div class="masks">
+            <div class="t"></div>
+            <div class="b"></div>
+            <div class="l"></div>
+            <div class="r"></div>
+        </div>
+        <div class="frame"></div>
+        <button class="btn" id="snap"></button>
     </div>
-    <!-- <canvas id="canvas" width="640" height="480"></canvas> -->
+    <div class="preview">
+        <img src="">
+    </div>
 </body>
-<script type="text/javascript">
-    var aVideo = document.getElementById('video');
-    // var aCanvas = document.getElementById('canvas');
-    // var ctx = aCanvas.getContext('2d');
-
-    // navigator.getUserMedia = navigator.getUserMedia ||
-    //     navigator.webkitGetUserMedia ||
-    //     navigator.mozGetUserMedia ||
-    //     navigator.msGetUserMedia; //获取媒体对象（这里指摄像头）
-    // navigator.getUserMedia({
-    //     video: true
-    // }, gotStream, noStream); //参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息
-    navigator.mediaDevices.getUserMedia({
-        video: { facingMode: { exact: "environment" } }
-    }).then(gotStream).catch(noStream);
-
-    function gotStream(stream) {
-        video.src = URL.createObjectURL(stream);
-        video.onerror = function () {
-            stream.stop();
-        };
-        stream.onended = noStream;
-        video.onloadedmetadata = function () {
-            // alert('摄像头成功打开！');
-        };
-    }
-
-    function noStream(err) {
-        alert(err);
-    }
-
-    // document.getElementById("snap").addEventListener("click", function () {
-    //     ctx.drawImage(aVideo, 0, 0, 640, 480); //将获取视频绘制在画布上
-    // });
-</script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="index.js"></script>
 
 </html>

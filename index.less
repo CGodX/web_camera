@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.video {
+    background: #fff;
+    position: relative;
+}
+
+.video,
+video,
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    position: relative;
+    z-index: 2;
+}
+
+@frame-size: 50px;
+
+.frame {
+    position: absolute;
+    top: @frame-size;
+    left: @frame-size;
+    bottom: @frame-size;
+    right: @frame-size;
+    margin: auto;
+    border: 2px solid #fff;
+}
+
+.masks {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    >div {
+        background-color: rgba(0, 0, 0, .3);
+        position: absolute;
+    }
+
+    .t,
+    .b {
+        height: @frame-size;
+        width: 100%;
+    }
+
+    .r,
+    .l {
+        top: @frame-size;
+        width: @frame-size;
+        height: calc(100% - @frame-size*2);
+    }
+
+    .t {
+        top: 0;
+    }
+
+    .b {
+        bottom: 0;
+    }
+
+    .l {
+        left: 0;
+    }
+
+    .r {
+        right: 0;
+    }
+}
+
+@btn-size: 60px;
+
+.btn {
+    height: @btn-size;
+    width: @btn-size;
+    border-radius: 100%;
+    position: absolute;
+    bottom: @frame-size+30px;
+    left: 50%;
+    margin-left: -@btn-size/2;
+    border: 5px solid #fff;
+    background-color: #ddd;
+    opacity: 0.8;
+}
+
+.preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, .8);
+    display: none;
+
+    &.show {
+        display: block;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+}
